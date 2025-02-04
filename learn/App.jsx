@@ -1,4 +1,4 @@
-import { Alert, Button, Image, Pressable, SafeAreaView, StyleSheet, Text, TouchableOpacity, useColorScheme, View } from 'react-native'
+import { Alert, Button, Image, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, useColorScheme, View } from 'react-native'
 import React, { useState } from 'react'
 
 const App = () => {
@@ -15,24 +15,28 @@ const App = () => {
     //     }
     // }
   return (
-    <SafeAreaView style={[styles.appContainer, {backgroundColor: bgColor}]}>
-      <Text style={[styles.txt, {color: txtColor}]}>App</Text>
-      {/* <Button title='Click' onPress={() => setIsOn(!isOn)}></Button> */}
-      <Pressable 
-        style={styles.imgBtn}
-        onPress={() => {
-            setIsOn(!isOn);
-            !isOn && Alert.alert("Button Pressed");
-        }}>
-        <Text style={[styles.btnTxt, {color: txtColor}]}>
-            Click Here
-        </Text>
-      </Pressable>
-      {
-        isOn && <Image style={styles.img} source={{uri: "https://buffer.com/library/content/images/size/w1200/2023/10/free-images.jpg"}}/>
-      }
-      {/* {isOn ? <Text>Clicked</Text> : <Text></Text>} */}
-    </SafeAreaView>
+    <ScrollView style={[styles.appContainer, {backgroundColor: bgColor}]}>
+        <View>
+            <Text style={[styles.txt, {color: txtColor}]}>App</Text>
+            {/* <Button title='Click' onPress={() => setIsOn(!isOn)}></Button> */}
+            <Pressable 
+                style={styles.imgBtn}
+                onPress={() => {
+                    setIsOn(!isOn);
+                    !isOn && Alert.alert("Button Pressed");
+                }}>
+                <Text style={[styles.btnTxt, {color: txtColor}]}>
+                    Click Here
+                </Text>
+            </Pressable>
+            <TextInput placeholder='Enter any Text here...' style={styles.input}>
+            </TextInput>
+            {
+                isOn && <Image style={styles.img} source={{uri: "https://buffer.com/library/content/images/size/w1200/2023/10/free-images.jpg"}}/>
+            }
+            {/* {isOn ? <Text>Clicked</Text> : <Text></Text>} */}
+        </View>
+    </ScrollView>
   )
 }
 
@@ -40,20 +44,35 @@ export default App
 
 const styles = StyleSheet.create({
     appContainer: {
-        width: "100%", height: "100%", 
+        width: "100%", 
+        height: "100%", 
+        flex: 2, 
+        flexDirection: "column-reverse"
         // backgroundColor: `${isDarkMode ? "black" : "white"}`,
     },
     imgBtn: {
-        padding: 10, margin: 10, backgroundColor: "#666",
-        justifyContent: "center", alignItems: "center", borderRadius: 100
+        padding: 10, 
+        margin: 10, 
+        backgroundColor: "#666",
+        justifyContent: "center", 
+        alignItems: "center", borderRadius: 100
     },
     txt: {
-        fontSize: 30, fontWeight: '800',
+        fontSize: 30, 
+        fontWeight: '800',
     },
     btnTxt: {
-        fontSize: 25, fontWeight: '800'
+        fontSize: 25, 
+        fontWeight: '800'
     },
     img: {
-        width: 500, height: 300,
+        width: 500, 
+        height: 300,
+    },
+    input: {
+        width: "100%",
+        padding: 5,
+        borderWidth: 1,
+        borderRadius: 5,
     }
 })
